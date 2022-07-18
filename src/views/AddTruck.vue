@@ -7,11 +7,15 @@
 
       <div class="column is-12">
         <form @submit.prevent="submitForm">
-          
           <div class="field">
             <label>Registration</label>
             <div class="control">
-              <input type="text" name="registration" class="input" v-model="registration" />
+              <input
+                type="text"
+                name="registration"
+                class="input"
+                v-model="registration"
+              />
             </div>
           </div>
 
@@ -53,9 +57,9 @@ export default {
           "Content-Type": "application/json",
         },
       };
-      
-      const registration = {registration: this.registration};
-      
+
+      const registration = { registration: this.registration };
+
       await axios
         .post("/customer-truck/", registration, config)
         .then((response) => {

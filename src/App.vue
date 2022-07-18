@@ -4,7 +4,13 @@
     <router-link to="/orders">Orders</router-link> |
     <router-link to="/add-driver">Add Driver</router-link> |
     <router-link to="/add-truck">Add Truck</router-link> |
+    <router-link to="/add-trailer">Add Trailer</router-link> |
     <router-link to="/login">Login</router-link> |
+    <div @click="toggleSidebar" class="top-bar-cart-link">
+      <i class="icofont-cart-alt icofont-1x"></i>
+      <span>Account</span>
+    </div>
+    <Account v-if="showSidebar" :toggle="toggleSidebar" />
   </div>
   <router-view />
 </template>
@@ -12,9 +18,13 @@
 <script>
 // import { mapGetters } from 'vuex';
 // import axios from 'axios';
+import Account from "@/components/Account";
 
 export default {
   name: "App",
+  components: {
+    Account,
+  },
   beforeCreate() {
     this.$store.commit("auth/initializeStore");
 
@@ -27,6 +37,16 @@ export default {
     //   axios.defaults.headers.common.post['Authorization'] = ""
 
     // }
+  },
+  data() {
+    return {
+      showSidebar: false,
+    };
+  },
+  methods: {
+    toggleSidebar() {
+      this.showSidebar = !this.showSidebar;
+    },
   },
 };
 </script>

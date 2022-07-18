@@ -4,6 +4,8 @@ import Login from "../views/Login.vue";
 import EditOrder from "../views/EditOrder.vue";
 import AddTruck from "../views/AddTruck.vue";
 import AddDriver from "../views/AddDriver.vue";
+import AddTrailer from "../views/AddTrailer.vue";
+import Drivers from "../views/Drivers.vue";
 import store from "../store";
 
 const routes = [
@@ -33,7 +35,16 @@ const routes = [
     name: "AddTruck",
     component: AddTruck,
   },
-
+  {
+    path: "/add-trailer",
+    name: "AddTrailer",
+    component: AddTrailer,
+  },
+  {
+    path: "/Drivers",
+    name: "Drivers",
+    component: Drivers,
+  },
   {
     path: "/orders",
     name: "Orders",

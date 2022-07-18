@@ -2,22 +2,20 @@
   <div class="container">
     <div class="columns is-multiline">
       <div class="column is-12">
-        <h1 class="title">Add Driver</h1>
+        <h1 class="title">Add Trailer</h1>
       </div>
 
       <div class="column is-12">
         <form @submit.prevent="submitForm">
           <div class="field">
-            <label>Name</label>
+            <label>Registration</label>
             <div class="control">
-              <input type="text" name="name" class="input" v-model="name" />
-            </div>
-          </div>
-
-          <div class="field">
-            <label>ID</label>
-            <div class="control">
-              <input type="text" name="id" class="input" v-model="id" />
+              <input
+                type="text"
+                name="registration"
+                class="input"
+                v-model="registration"
+              />
             </div>
           </div>
 
@@ -35,18 +33,17 @@
 <script>
 import axios from "axios";
 export default {
-  name: "AddDriver",
+  name: "AddTrailer",
   data() {
     return {
-      id: "",
-      name: "",
+      registration: "",
     };
   },
   methods: {
     async submitForm() {
       // this.$store.commit('setIsLoading', true)
       console.log("Submit Form");
-      console.log(this.name);
+      console.log(this.registration);
       // let config = {
       //   headers: {
       //   "Authorization": localStorage.getItem('Token '+'access_token') ,
@@ -61,14 +58,10 @@ export default {
         },
       };
 
-      const driver = {
-        name: this.name,
-        national_id: this.id,
-        customer_id: localStorage.getItem("customer_id"),
-      };
-      console.log(driver);
+      const registration = { registration: this.registration };
+
       await axios
-        .post("/customer-driver/", driver, config)
+        .post("/customer-trailer/", registration, config)
         .then((response) => {
           console.log(response.data);
           //  toast({

@@ -1,77 +1,94 @@
 <template>
   <div class="container">
     <div class="columns is-multiline">
-      <!-- <div class="column is-12">
-        <h1 class="title">Leads</h1>
-
-        <form @submit.prevent="getOrders">
-          <div class="field has-addons">
-            <div class="control">
-              <input type="text" class="input" v-model="query" />
-            </div>
-            <div class="control">
-              <button class="button is-success">Search</button>
-            </div>
-          </div>
-        </form>
-      </div> -->
-
       <div class="column is-12">
-        <h1 class="title">Orders</h1>
+        <!-- <h1 class="title">Leads</h1>
 
-        <router-link :to="{ name: 'Home' }" class="button is-light mt-4"
-          >Add Order</router-link
-        >
-      </div>
+          <form @submit.prevent="getOrders">
+            <div class="field has-addons">
+              <div class="control">
+                <input type="text" class="input" v-model="query" />
+              </div>
+              <div class="control">
+                <button class="button is-success">Search</button>
+              </div>
+            </div>
+          </form> -->
 
-      <div class="column is-12">
-        <table class="table is-fullwidth">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <!-- <th>Company</th> -->
-              <th>Destination</th>
-              <th>Loaded Qty</th>
-              <th>Status</th>
-              <!-- <th>Created at</th> -->
-              <th></th>
-            </tr>
-          </thead>
+        <div>
+          <h1 class="title">Orders</h1>
 
-          <tbody>
-            <tr v-for="order in orders" v-bind:key="order.id">
-              <td>{{ order.id }}</td>
-              <!-- <td>{{ order.customer_id }}</td> -->
-              <td>{{ order.destination }}</td>
-              <td>{{ order.order_quantity }}</td>
-              <td>{{ order.status }}</td>
-              <!-- <td>{{ order.created_at }}</td> -->
-              <td>
-                <router-link
-                  :to="{ name: 'EditOrder', params: { id: order.id } }"
-                  class="button is-light"
-                  >Edit</router-link
-                >
-              </td>
-            </tr>
-          </tbody>
-        </table>
-
-        <div class="buttons">
-          <button
-            class="button is-light"
-            @click="goToPreviousPage()"
-            v-if="showPreviousButton"
+          <router-link :to="{ name: 'Home' }" class="button is-light mt-4"
+            >Add Order</router-link
           >
-            Prev
-          </button>
-          <button
-            class="button is-light"
-            @click="goToNextPage()"
-            v-if="showNextButton"
-          >
-            Next
-          </button>
+        </div>
+
+        <div>
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Created at</th>
+                <th>Destination</th>
+                <th>Driver</th>
+                <th>Order Qty</th>
+                <th>Status</th>
+                <th>Trailer</th>
+                <th>Truck</th>
+                <th></th>
+              </tr>
+            </thead>
+
+            <!-- <div>{{orders}}</div> -->
+
+            <tbody>
+              <tr v-for="order in this.orders" :key="order.id">
+                <td>{{ order.id }}</td>
+                <td>{{ order.created_at }}</td>
+                <td>{{ order.destination }}</td>
+                <td>{{ order.driver }}</td>
+                <td>{{ order.order_quantity }}</td>
+                <td>{{ order.status }}</td>
+                <td>{{ order.trailer }}</td>
+                <td>{{ order.truck }}</td>
+              </tr>
+            </tbody>
+
+            <!-- <tbody>
+              <tr v-for="order in orders">
+                <td>{{ order.id }}</td>
+                <td>{{ order.destination }}</td>
+                <td>{{ order.order_quantity }}</td>
+                <td>{{ order.status }}</td>
+                <td>{{ order.truck }}</td>
+                <td>{{ order.created_at }}</td>
+                <td>
+                  <router-link
+                    :to="{ name: 'EditOrder', params: { id: order.id } }"
+                    class="button is-light"
+                    >Edit</router-link
+                  >
+                </td>
+              </tr>
+            </tbody> -->
+          </table>
+
+          <!-- <div class="buttons">
+            <button
+              class="button is-light"
+              @click="goToPreviousPage()"
+              v-if="showPreviousButton"
+            >
+              Prev
+            </button>
+            <button
+              class="button is-light"
+              @click="goToNextPage()"
+              v-if="showNextButton"
+            >
+              Next
+            </button>
+          </div> -->
         </div>
       </div>
     </div>
@@ -84,26 +101,26 @@ export default {
   name: "About",
   data() {
     return {
-      orders: [],
+      orders: "",
       showNextButton: false,
       showPreviousButton: false,
       currentPage: 1,
       query: "",
-      num_orders: 0,
+      // num_orders: 0,
     };
   },
   mounted() {
     this.getOrders();
   },
   methods: {
-    goToNextPage() {
-      this.currentPage += 1;
-      this.getOrders();
-    },
-    goToPreviousPage() {
-      this.currentPage -= 1;
-      this.getOrders();
-    },
+    // goToNextPage() {
+    //   this.currentPage += 1;
+    //   this.getOrders();
+    // },
+    // goToPreviousPage() {
+    //   this.currentPage -= 1;
+    //   this.getOrders();
+    // },
 
     async getOrders() {
       // this.$store.commit('setIsLoading', true)
@@ -122,7 +139,8 @@ export default {
         .then((response) => {
           console.log(response.data);
           this.orders = response.data;
-          this.num_orders = response.data.count;
+          console.log(Object.keys(this.orders));
+          // this.num_orders = response.data.count;
         })
 
         // await axios
