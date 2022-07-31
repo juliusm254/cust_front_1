@@ -2,6 +2,7 @@
   <div id="nav">
     | <router-link to="/">Home</router-link> |
     <router-link to="/orders">Orders</router-link> |
+    <router-link to="/bulk-balance">Bulk</router-link> |
     <router-link to="/add-driver">Add Driver</router-link> |
     <router-link to="/add-truck">Add Truck</router-link> |
     <router-link to="/add-trailer">Add Trailer</router-link> |

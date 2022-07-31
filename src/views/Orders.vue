@@ -46,11 +46,11 @@
                 <td>{{ order.id }}</td>
                 <td>{{ order.created_at }}</td>
                 <td>{{ order.destination }}</td>
-                <td>{{ order.driver }}</td>
+                <td>{{ order.driver_details.name }}</td>
                 <td>{{ order.order_quantity }}</td>
                 <td>{{ order.status }}</td>
-                <td>{{ order.trailer }}</td>
-                <td>{{ order.truck }}</td>
+                <td>{{ order.trailer_details.registration }}</td>
+                <td>{{ order.truck_details.registration }}</td>
               </tr>
             </tbody>
 

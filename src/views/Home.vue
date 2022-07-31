@@ -33,7 +33,7 @@
                 <option disabled value="selected">Select Trailer</option>
                 <option
                   v-for="trailer in trailers"
-                  v-bind:key="trailer"
+                  v-bind:key="trailer.id"
                   :value="trailer.trailer"
                 >
                   {{ trailer.registration }}
@@ -52,7 +52,7 @@
                 <option
                   v-for="driver in drivers"
                   v-bind:key="driver.id"
-                  :value="driver.driver"
+                  :value="driver.driver.id"
                 >
                   {{ driver.name }}
                 </option>
@@ -273,7 +273,7 @@ export default {
         trailer: this.trailer,
         order_quantity: this.order_quantity,
         destination: this.destination,
-        customer_id: localStorage.getItem("customer_id"),
+        customer: localStorage.getItem("customer_id"),
       };
       console.log(order);
       await axios

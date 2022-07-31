@@ -6,6 +6,7 @@ import AddTruck from "../views/AddTruck.vue";
 import AddDriver from "../views/AddDriver.vue";
 import AddTrailer from "../views/AddTrailer.vue";
 import Drivers from "../views/Drivers.vue";
+import BulkBalance from "../views/BulkBalance.vue";
 import store from "../store";
 
 const routes = [
@@ -41,9 +42,14 @@ const routes = [
     component: AddTrailer,
   },
   {
-    path: "/Drivers",
+    path: "/drivers",
     name: "Drivers",
     component: Drivers,
+  },
+  {
+    path: "/bulk-balance",
+    name: "BulkBalance",
+    component: BulkBalance,
   },
   {
     path: "/orders",
